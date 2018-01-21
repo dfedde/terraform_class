@@ -1,0 +1,89 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'erb'
+require 'fileutils'
+
+build_dir = File.join(File.dirname(__FILE__), '..', 'build')
+template_dir = File.join(File.dirname(__FILE__), '..', 'templates', 'web')
+template = File.join(template_dir,  'index.html.erb')
+manifest = YAML::load_file(File.join('slides/manifest.yml'))
+slide_dir = File.join(File.dirname(__FILE__), '..', 'slides')
+
+class Deck
+  include Enumerable
+
+  attr_accessor :name, :slide_dir
+  alias title name
+
+  def initialize(manifest, slide_dir)
+    @name = manifest['name']
+    @slides = manifest['slides']
+    @slide_dir = slide_dir
+  end
+
+  def each
+    slide_break = "%%%\n"
+    vertical_break = "&&&\n"
+    @slides.each do |page|
+      slide_file = File.read(File.join(slide_dir, page))
+      slide_list = slide_file.split(slide_break).map do |single_slide|
+        single_slide.split(vertical_break)
+      end
+      slide_list.each do |slide|
+        yield slide
+      end
+    end
+  end
+
+
+  def slide_markup
+    out = yield 
+    case out
+    when String
+      puts "here"
+      <<~HTML
+        <section data-markdown>
+          <script type="text/template">
+            #{out}
+          </script>
+        </section> 
+      HTML
+    when Enumerable
+      <<~HTML
+        <section>
+          #{out.join}
+        </section> 
+      HTML
+    end
+  end
+
+  def slides
+    self.inject('') do |m, slide_list|
+      p slide_list
+      m + slide_markup do
+        slide_list.map do |slide|
+          p slide
+          slide_markup do
+            slide
+          end
+        end
+      end
+    end
+  end
+
+
+  def get_binding
+    binding
+  end
+end
+
+b = Deck.new(manifest, slide_dir).get_binding
+
+File.open(File.join(build_dir, 'web', 'index.html'), 'w') do |file|
+  file.write(ERB.new(File.read(template)).result b)
+end
+
+FileUtils.cp_r(template_dir, build_dir)
+FileUtils.cp_r(File.join(slide_dir, 'assets'), File.join(build_dir, 'web'))
+

@@ -1,0 +1,9 @@
+---
+name: Terraform
+description: |
+  a class that teaches people how to use terraform
+slides:
+  - opening.md
+  - what_is_terraform.md
+  - make_a_project.md
+  - install_terraform.md

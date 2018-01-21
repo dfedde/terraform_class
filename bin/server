@@ -1,0 +1,7 @@
+#!/bin/ruby
+
+require 'sinatra'
+
+get '/user' do
+  'you are added to the db. An project will be crated for you when duncan deams it good'
+end
