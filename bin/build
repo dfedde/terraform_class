@@ -4,7 +4,7 @@ require 'yaml'
 require 'erb'
 require 'fileutils'
 
-build_dir = File.join(File.dirname(__FILE__), '..', 'build')
+build_dir = File.join(File.dirname(__FILE__), '..', 'docs')
 template_dir = File.join(File.dirname(__FILE__), '..', 'templates', 'web')
 template = File.join(template_dir,  'index.html.erb')
 manifest = YAML::load_file(File.join('slides/manifest.yml'))
