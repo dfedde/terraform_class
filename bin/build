@@ -80,10 +80,10 @@ end
 
 b = Deck.new(manifest, slide_dir).get_binding
 
-File.open(File.join(build_dir, 'web', 'index.html'), 'w') do |file|
+File.open(File.join(build_dir, 'index.html'), 'w') do |file|
   file.write(ERB.new(File.read(template)).result b)
 end
 
-FileUtils.cp_r(template_dir, build_dir)
-FileUtils.cp_r(File.join(slide_dir, 'assets'), File.join(build_dir, 'web'))
+FileUtils.cp_r(File.join(template_dir, '.'), build_dir)
+FileUtils.cp_r(File.join(slide_dir, 'assets'), build_dir)
 

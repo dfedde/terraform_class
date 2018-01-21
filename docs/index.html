@@ -30,7 +30,10 @@
     # Terraform
 
 
-### Duncan Fedde <!-- .element: class="fragment" data-fragment-index="1" --> 
+### Duncan Fedde <!-- .element: class="fragment" --> 
+### @dfedde <!-- .element: class="fragment" ->
+### duncan@fedde.us <!-- .element: class="fragment" ->
+### duncan@fedde.us <!-- .element: class="fragment" ->
 
 
   </script>
@@ -98,19 +101,19 @@ resource "google_compute_instance" "instances" {
   <script type="text/template">
     <!-- .slide: data-background="#ff0000" -->
 # EXERSIZE
-## Installing Terraform
+## Getting Setup
 
 
   </script>
 </section> 
 <section data-markdown>
   <script type="text/template">
-    
+    ## Install terraform
 your distro may have a way to install terraform
 
-`apt-get install terraform`
+`apt-get install terraform` <!-- .element: class="fragment" --> 
 
-otherwise you can just [download](https://www.terraform.io/downloads.html)the bianry 
+otherwise you can just [download](https://www.terraform.io/downloads.html) the bianry <!-- .element: class="fragment" --> 
 
 ```
 pushd /tmp
@@ -125,6 +128,17 @@ Note:
 ```
 terraform
 >~ Usage: terraform
+```
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## Set up a project directory
+
+```
+mkdir terraform-class
 ```
 
   </script>
