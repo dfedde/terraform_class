@@ -91,6 +91,22 @@ resource "google_compute_instance" "instances" {
 </section> 
 <section data-markdown>
   <script type="text/template">
+    
+## Make a google project
+
+<div style='text-align:center'>
+<form action="http://localhost:4567/student" method="post" target="_blank">
+  <label>Email: <br><small>must be linked to a valid google account</small></label><br>
+  <input type="email" name="email"><br>
+  <input type="submit" value="Make a Google Project">
+</form> 
+</div>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
     ## Install terraform
 your distro may have a way to install terraform <!-- .element: class="fragment" --> 
 
@@ -138,7 +154,7 @@ pwd
 </section> 
 <section data-markdown>
   <script type="text/template">
-    ## create a terraform file
+    ## Create a terraform file
 
 ```
 touch main.tf
@@ -155,10 +171,27 @@ ls
 </section> 
 <section data-markdown>
   <script type="text/template">
-    ## Make a google project
+    ## Check your email for a email from GCP
 
-<button>make a project</button>
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## Set up a service account.
 
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## Set up your terrafrom file.
+
+```
+'provider "google" {
+  credentials = "${file("account.json")}"
+  project     = "name-of-your-project"
+  region      = "us-central1"
+}' > main.tf
+```
 
   </script>
 </section> 

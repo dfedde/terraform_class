@@ -1,7 +1,40 @@
-#!/bin/ruby
+#!/usr/bin/env ruby
 
 require 'sinatra'
+require 'sqlite3'
+require 'sinatra/cross_origin'
 
-get '/user' do
-  'you are added to the db. An project will be crated for you when duncan deams it good'
+set port: 4567
+set bind: '0.0.0.0'
+# set :enviroment, :production
+set :allow_credentials, true
+set :expose_headers, ['Content-Type', 'Cookie']
+
+configure do
+	enable :cross_origin
+end
+
+def random_string length
+	length.times.inject('') do |m,_| 
+		(
+			('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a
+	).sample(1).first.to_s + m
+	end
+end
+
+use Rack::Session::Cookie, :key => 'done.user',
+	:path => '/',
+	:expire_after => 2592000,
+	:secret => (random_string 50)
+
+db = SQLite3::Database.new ".data/test.db"
+# db = SQLite3::Database.new ":memory:"
+puts db.get_first_value 'SELECT SQLITE_VERSION()'
+
+db.execute "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, 
+		email TEXT)"
+
+post '/student' do
+	db.execute "INSERT INTO students (email) VALUES(?)", params[:email]
+	'you are added to the db. An project will be crated for you when duncan deams it good'
 end

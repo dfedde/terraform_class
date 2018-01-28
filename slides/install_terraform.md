@@ -2,6 +2,18 @@
 # Getting Setup
 
 &&&
+
+## Make a google project
+
+<div style='text-align:center'>
+<form action="http://localhost:4567/student" method="post" target="_blank">
+  <label>Email: <br><small>must be linked to a valid google account</small></label><br>
+  <input type="email" name="email"><br>
+  <input type="submit" value="Make a Google Project">
+</form> 
+</div>
+
+&&&
 ## Install terraform
 your distro may have a way to install terraform <!-- .element: class="fragment" --> 
 
@@ -54,17 +66,16 @@ ls
 ```
 
 &&&
-## Make a google project
-
-<button>make a project</button>
-
+## Check your email for a email from GCP
+&&&
+## Set up a service account.
 &&&
 ## Set up your terrafrom file.
 
 ```
 'provider "google" {
   credentials = "${file("account.json")}"
-  project     = "name-of-your-project"
+  project     = "your project name"
   region      = "us-central1"
 }' > main.tf
 ```

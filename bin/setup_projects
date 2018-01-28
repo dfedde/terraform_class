@@ -1,0 +1,17 @@
+#!/usr/bin/env ruby
+
+require 'sqlite3'
+
+db = SQLite3::Database.new ".data/test.db"
+students = db.execute('SELECT DISTINCT email from students').flatten
+
+args = []
+args << "--var 'students=[\"#{students.join '","'}\"]'"
+args << "--var 'student_count=#{students.count}'"
+
+Dir.chdir(File.join File.dirname(__FILE__), 'terraform') do
+  command = "terraform #{ARGV[0]} #{args.join ' '}"
+  puts command
+  system command
+end
+
