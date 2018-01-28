@@ -5,5 +5,5 @@ description: |
 slides:
   - opening.md
   - what_is_terraform.md
-  - make_a_project.md
   - install_terraform.md
+  - first_terraform_file.md
