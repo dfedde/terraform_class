@@ -54,7 +54,7 @@
   <section data-markdown>
   <script type="text/template">
     
-## deploy this page??
+## deploy a static web page
 
 
   </script>
@@ -518,7 +518,7 @@ terrafrom apply
 <section>
   <section data-markdown>
   <script type="text/template">
-    <!-- .slide: data-background="#6401b5" -->
+    <!-- .slide: data-background="#01b564" -->
 ## Lab 4
 # importing a resource
 
@@ -596,8 +596,271 @@ terraform import \
 <section data-markdown>
   <script type="text/template">
     
-## import <!-- .element: class="fragment" -->
+## import
  Import existing infrastructure into Terraform<!-- .element: class="fragment" -->
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#6401b5" -->
+## Lab 5
+# upload a file
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+## Pull down the page
+
+```
+curl -o index.html http://duncan.fedde.us/terraform_class/assets/inline_game.html
+```
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+<pre>
+resource "google_storage_bucket_object" "index" {
+  name   = "index.html"
+  source = "./index.html"
+  bucket = "${google_storage_bucket.asset_store.name}"
+}
+</pre>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### what did we just do...
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+<pre>
+resource <span class="fragment highlight-current-green" data-fragment-index="1">"google_storage_bucket"</span> <span class="fragment highlight-current-green" data-fragment-index="2">"asset_store"</span> { 
+  <span class="fragment highlight-current-green" data-fragment-index="3">name</span>="${project_id}-assets"
+  storage_class = "MULTI_REGIONAL"
+}
+</pre>
+
+<pre>
+resource "google_storage_bucket_object" "index" {
+  name   = "index.html"
+  source = "./index.html"
+  bucket = "${<span class="fragment highlight-current-green" data-fragment-index="1">google_storage_bucket</span>.<span class="fragment highlight-current-green" data-fragment-index="2">asset_store</span>.<span class="fragment highlight-current-green" data-fragment-index="3">name</span>}"
+}
+</pre>
+
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#b50152" -->
+## Lab 6
+# add some load balancing
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## create the load balancer
+Give this one a try on your own
+
+
+Here are some links to relevant documentation
+- [compute_global_forwarding_rule](https://www.terraform.io/docs/providers/google/r/compute_global_forwarding_rule.html)
+- [compute_backend_bucket](https://www.terraform.io/docs/providers/google/r/compute_backend_bucket.html)
+- [compute_target_http_proxy](https://www.terraform.io/docs/providers/google/r/compute_target_http_proxy.html)
+- [compute_url_map](https://www.terraform.io/docs/providers/google/r/compute_url_map.html)
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+<pre>
+resource "google_compute_url_map" "games" {
+  name = "games"
+
+  default_service = "${google_compute_backend_bucket.static.self_link}"
+}
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <pre>
+resource "google_compute_backend_bucket" "static" {
+  name = "static-asset-backend-bucket"
+  bucket_name = "${google_storage_bucket.asset_store.name}"
+  enable_cdn = true
+}
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <pre>
+resource "google_compute_target_http_proxy" "default" {
+  name = "default-proxy"
+  url_map = "${google_compute_url_map.games.self_link}"
+}
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <pre>
+resource "google_compute_global_forwarding_rule" "default" {
+  name = "default-rule"
+  target = "${google_compute_target_http_proxy.default.self_link}"
+  port_range = "80"
+}
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <pre>
+resource "google_storage_bucket" "asset_store" {
+  name="duncan-terraform-class-5314e69-assets"
+  storage_class = "MULTI_REGIONAL"
+
+  website {
+    main_page_suffix = "index.html"
+  }
+}
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <pre>
+resource "google_storage_object_acl" "index" {
+  bucket = "${google_storage_bucket.asset_store.name}"
+  object = "${google_storage_bucket_object.index.name}"
+  predefined_acl = "publicRead"
+}
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## let's try out another command
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+If you have Graphviz and ImageMagick installed
+```
+terraform graph | dot -Tpng | display
+```
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#01b564" -->
+## Lab 7
+# inputs and outputs
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## outputs
+
+<pre>
+output "load_balancer_address" {
+  value = "${google_compute_global_forwarding_rule.default.ip_address}"
+}
+</pre>
+
+<pre class='fragment'><code data-trim data-noescape>
+terrafrom refresh
+</pre></code>
+
+<pre class='fragment'><code data-trim data-noescape>
+terrafrom output
+</pre></code>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## inputs
+<pre class='fragment'>
+variable "project_name" {
+  default = "duncan-terraform-class-5314e69-assets"
+}
+</pre>
+
+<pre class='fragment'>
+provider "google" {
+  credentials = "${file("account.json")}"
+  project = "${var.project_name}"
+}
+</pre>
+
+<pre class='fragment'>
+resource "google_storage_bucket" "asset_store" {
+  name="${var.project_name}-assets"
+  storage_class = "MULTI_REGIONAL"
+
+  website {
+    main_page_suffix = "index.html"
+  }
+}
+</pre>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### what did we just do...
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+## refresh
+ Update local state file against real resources<!-- .element: class="fragment" -->
+
+## output<!-- .element: class="fragment" -->
+  Read an output from a state file<!-- .element: class="fragment" -->
 
   </script>
 </section> 

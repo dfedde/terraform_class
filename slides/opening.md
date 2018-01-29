@@ -11,7 +11,7 @@
 
 %%%
 
-## deploy this page??
+## deploy a static web page
 
 %%%
 <h2>Yes... but how?</h2>

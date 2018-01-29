@@ -1,4 +1,4 @@
-<!-- .slide: data-background="#6401b5" -->
+<!-- .slide: data-background="#01b564" -->
 ## Lab 4
 # importing a resource
 
