@@ -31,6 +31,67 @@
 
 ### [duncan.fedde.us/terraform_class](http://duncan.fedde.us/terraform_class)
 
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    
+## what are we going to be doing today???
+
+- Using GCP <!-- .element: class="fragment" -->
+- Using Terraform <!-- .element: class="fragment" -->
+
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    
+## deploy this page??
+
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <h2>Yes... but how?</h2>
+<pre class="fragment"><code data-trim contenteditable>
+10 I'll run a lab
+20 You will pair up and try the lab on your own
+30 we'll come back and discus the lab
+40 GOTO 10
+</code></pre>
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    ## but first
+
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    ## what is terrafrom
+
+
   </script>
 </section> 
 
@@ -47,7 +108,8 @@
 <section>
   <section data-markdown>
   <script type="text/template">
-    ## But what does that mean
+    ## yes...
+## But what does that mean
 
 
   </script>
@@ -84,6 +146,7 @@ resource "google_compute_instance" "instances" {
   <section data-markdown>
   <script type="text/template">
     <!-- .slide: data-background="#01b564" -->
+## lab 1
 # Getting Setup
 
 
@@ -95,7 +158,7 @@ resource "google_compute_instance" "instances" {
 ## Make a google project
 
 <div style='text-align:center'>
-<form action="http://localhost:4567/student" method="post" target="_blank">
+<form action="http://192.168.50.237:4567/student" method="post" target="_blank">
   <label>Email: <br><small>must be linked to a valid google account</small></label><br>
   <input type="email" name="email"><br>
   <input type="submit" value="Make a Google Project">
@@ -166,18 +229,24 @@ ls
 >~ main.tf
 ```
 
-
   </script>
 </section> 
 <section data-markdown>
   <script type="text/template">
-    ## Check your email for a email from GCP
+    ## take a look at your newly created project
+
 
   </script>
 </section> 
-<section data-markdown>
+
+</section> 
+<section>
+  <section data-markdown>
   <script type="text/template">
-    ## Set up a service account.
+    <!-- .slide: data-background="#6401b5" -->
+## Lab 2
+# making a compute instance
+
 
   </script>
 </section> 
@@ -186,11 +255,116 @@ ls
     ## Set up your terrafrom file.
 
 ```
-'provider "google" {
+provider "google" {
   credentials = "${file("account.json")}"
-  project     = "name-of-your-project"
+  project     = "your project name"
   region      = "us-central1"
-}' > main.tf
+}
+```
+<pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
+terrafrom plan
+</pre></code>
+
+<div class='fragment fade-in' data-fragment-index="1"> <pre class='fragment fade-out' data-fragment-index="2"><code data-trim data-noescape>
+terrafrom init
+</pre></code></div>
+
+<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
+terrafrom plan
+</pre></code>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## Well That did Nothing
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+```
+resource "google_compute_instance" "default" {
+  name         = "test"
+  machine_type = "n1-standard-1"
+  zone         = "us-central1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-8"
+    }
+  }
+
+  scratch_disk {
+  }
+
+  network_interface {
+    network = "default"
+  }
+}
+```
+
+<pre><code data-trim data-noescape>
+terrafrom plan
+</pre></code>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### make it real
+
+<pre><code data-trim data-noescape>
+terrafrom apply
+</pre></code>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### what did we just do...
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+<pre><code data-trim data-noescape>
+provider "google" {
+  credentials = "${file("account.json")}"
+  project     = "your project name"
+  region      = "us-central1"
+}
+</pre></code>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+```
+resource "google_compute_instance" "default" {
+  name         = "test"
+  machine_type = "n1-standard-1"
+  zone         = "us-central1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-8"
+    }
+  }
+
+  scratch_disk {
+  }
+
+  network_interface {
+    network = "default"
+  }
+}
 ```
 
   </script>
@@ -200,29 +374,20 @@ ls
 <section>
   <section data-markdown>
   <script type="text/template">
-    # Exersize
-## Make a google compute instance
+    #
 
-
-  </script>
-</section> 
-<section data-markdown>
-  <script type="text/template">
-    
 ```
-provider "google" {
-  credentials = "${file("account.json")}"
-  project     = "name-of-your-project"
-  region      = "us-central1"
-}
+    apply              Builds or changes infrastructure
 ```
 
+```
+    init               Initialize a Terraform working directory
+```
 
-  </script>
-</section> 
-<section data-markdown>
-  <script type="text/template">
-    
+```
+    plan               Generate and show an execution plan
+```
+
 
   </script>
 </section> 

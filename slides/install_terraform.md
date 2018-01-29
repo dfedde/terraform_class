@@ -1,4 +1,5 @@
 <!-- .slide: data-background="#01b564" -->
+## lab 1
 # Getting Setup
 
 &&&
@@ -6,7 +7,7 @@
 ## Make a google project
 
 <div style='text-align:center'>
-<form action="http://localhost:4567/student" method="post" target="_blank">
+<form action="http://192.168.50.237:4567/student" method="post" target="_blank">
   <label>Email: <br><small>must be linked to a valid google account</small></label><br>
   <input type="email" name="email"><br>
   <input type="submit" value="Make a Google Project">
@@ -64,18 +65,6 @@ Note:
 ls
 >~ main.tf
 ```
+&&&
+## take a look at your newly created project
 
-&&&
-## Check your email for a email from GCP
-&&&
-## Set up a service account.
-&&&
-## Set up your terrafrom file.
-
-```
-'provider "google" {
-  credentials = "${file("account.json")}"
-  project     = "your project name"
-  region      = "us-central1"
-}' > main.tf
-```
