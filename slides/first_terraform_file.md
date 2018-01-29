@@ -5,13 +5,14 @@
 &&&
 ## Set up your terrafrom file.
 
-```
+<pre>
 provider "google" {
   credentials = "${file("account.json")}"
-  project     = "your project name"
-  region      = "us-central1"
+  project = "your project name"
+  region = "us-central1"
 }
-```
+</pre>
+
 <pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
 terrafrom plan
 </pre></code>
@@ -28,11 +29,11 @@ terrafrom plan
 ## Well That did Nothing
 &&&
 
-```
+<pre>
 resource "google_compute_instance" "default" {
-  name         = "test"
+  name = "test"
   machine_type = "n1-standard-1"
-  zone         = "us-central1-a"
+  zone = "us-central1-a"
 
   boot_disk {
     initialize_params {
@@ -47,7 +48,7 @@ resource "google_compute_instance" "default" {
     network = "default"
   }
 }
-```
+</pre>
 
 <pre><code data-trim data-noescape>
 terrafrom plan
@@ -64,26 +65,26 @@ terrafrom apply
 ### what did we just do...
 &&&
 
-<pre><code data-trim data-noescape>
-provider "google" {
-  credentials = "${file("account.json")}"
-  project     = "your project name"
-  region      = "us-central1"
+<pre>
+<span class="fragment highlight-current-green">provider</span> <span class="fragment highlight-current-green">"google"</span> {
+  <span class="fragment highlight-current-green">credentials = "${file("account.json")}"</span>
+  <span class="fragment highlight-current-green">project = "your project name"</span>
+  <span class="fragment highlight-current-green">region = "us-central1"</span>
 }
-</pre></code>
+</pre>
 &&&
 
-```
-resource "google_compute_instance" "default" {
-  name         = "test"
-  machine_type = "n1-standard-1"
-  zone         = "us-central1-a"
+<pre>
+<span class="fragment highlight-current-green">resource</span> <span class="fragment highlight-current-green">"google_compute_instance"</span> <span class="fragment highlight-current-green">"default"</span> {
+  <span class="fragment highlight-current-green">name = "test"</span>
+  <span class="fragment highlight-current-green">machine_type = "n1-standard-1"</span>
+  zone = "us-central1-a"
 
-  boot_disk {
+  <span class="fragment highlight-current-green">boot_disk {
     initialize_params {
       image = "debian-cloud/debian-8"
     }
-  }
+  }</span>
 
   scratch_disk {
   }
@@ -92,19 +93,16 @@ resource "google_compute_instance" "default" {
     network = "default"
   }
 }
-```
-%%%
-#
+</pre>
+&&&
+## commands
+&&&
 
-```
-    apply              Builds or changes infrastructure
-```
+## init
+ Initialize a Terraform working directory<!-- .element: class="fragment" -->
 
-```
-    init               Initialize a Terraform working directory
-```
+## plan<!-- .element: class="fragment" -->
+ Generate and show an execution plan<!-- .element: class="fragment" -->
 
-```
-    plan               Generate and show an execution plan
-```
-i
+## apply <!-- .element: class="fragment" -->
+ Builds or changes infrastructure <!-- .element: class="fragment" -->

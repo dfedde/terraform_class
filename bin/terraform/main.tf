@@ -13,6 +13,7 @@ resource "google_project" "class_projects" {
   count = "${var.student_count}"
   name = "${element( split("@", element(var.students, count.index)),2)} - Terraform Class"
   project_id = "${substr("${element( split("@", element(var.students, count.index)),2)}-terraform-class-${sha1(element(var.students, count.index))}", 0, 30)}"
+  billing_account = "0166F6-28EB10-08F288"
 }
 
 resource "google_project_iam_member" "project" {
@@ -34,6 +35,12 @@ resource "google_service_account" "terraform_user" {
   account_id   = "terraform-user"
   display_name = "Terrafrom User"
   project = "${google_project.class_projects.*.number[count.index]}"
+}
+
+resource "google_storage_bucket" "asset_store" {                                           
+  count = "${var.student_count}"
+  name="${google_project.class_projects.*.project_id[count.index]}-assets"
+  storage_class = "MULTI_REGIONAL"
 }
 
 

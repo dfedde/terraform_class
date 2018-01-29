@@ -1,1 +1,13 @@
 .data
+
+**/.terraform/*
+
+# .tfstate files
+*.tfstate
+*.tfstate.*
+
+# .tfvars files
+*.tfvars
+
+# cred_files
+**/account.json

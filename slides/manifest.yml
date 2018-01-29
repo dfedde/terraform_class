@@ -7,4 +7,6 @@ slides:
   - what_is_terraform.md
   - install_terraform.md
   - first_terraform_file.md
-  - destroying_your_first_terrafrom_file.md
+  - what_do_we_have.md
+  - destroying_your_first_instance.md
+  - importing.md

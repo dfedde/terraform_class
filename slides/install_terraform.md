@@ -67,4 +67,21 @@ ls
 ```
 &&&
 ## take a look at your newly created project
+[console.cloud.google.com](https://console.cloud.google.com)
+<pre class='fragment'>
+project name: 
+duncan@fedde.us -> duncan - Terrafrom Class
+</pre>
 
+<pre class='fragment'>
+project id: 
+duncan@fedde.us -> duncan-terrafrom-class-xj7q
+</pre>
+&&&
+## create a key file for your new project
+&&&
+<!-- .slide: data-transition="slide-in fade-out" -->
+![google image](assets/IAM_menu.png)
+&&&
+<!-- .slide: data-transition="fade-in" -->
+![google image](assets/IAM_service_account.png)

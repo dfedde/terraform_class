@@ -234,7 +234,36 @@ ls
 <section data-markdown>
   <script type="text/template">
     ## take a look at your newly created project
+[console.cloud.google.com](https://console.cloud.google.com)
+<pre class='fragment'>
+project name: 
+duncan@fedde.us -> duncan - Terrafrom Class
+</pre>
 
+<pre class='fragment'>
+project id: 
+duncan@fedde.us -> duncan-terrafrom-class-xj7q
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## create a key file for your new project
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-transition="slide-in fade-out" -->
+![google image](assets/IAM_menu.png)
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-transition="fade-in" -->
+![google image](assets/IAM_service_account.png)
 
   </script>
 </section> 
@@ -254,13 +283,14 @@ ls
   <script type="text/template">
     ## Set up your terrafrom file.
 
-```
+<pre>
 provider "google" {
   credentials = "${file("account.json")}"
-  project     = "your project name"
-  region      = "us-central1"
+  project = "your project name"
+  region = "us-central1"
 }
-```
+</pre>
+
 <pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
 terrafrom plan
 </pre></code>
@@ -285,11 +315,11 @@ terrafrom plan
 <section data-markdown>
   <script type="text/template">
     
-```
+<pre>
 resource "google_compute_instance" "default" {
-  name         = "test"
+  name = "test"
   machine_type = "n1-standard-1"
-  zone         = "us-central1-a"
+  zone = "us-central1-a"
 
   boot_disk {
     initialize_params {
@@ -304,7 +334,7 @@ resource "google_compute_instance" "default" {
     network = "default"
   }
 }
-```
+</pre>
 
 <pre><code data-trim data-noescape>
 terrafrom plan
@@ -333,30 +363,30 @@ terrafrom apply
 <section data-markdown>
   <script type="text/template">
     
-<pre><code data-trim data-noescape>
-provider "google" {
-  credentials = "${file("account.json")}"
-  project     = "your project name"
-  region      = "us-central1"
+<pre>
+<span class="fragment highlight-current-green">provider</span> <span class="fragment highlight-current-green">"google"</span> {
+  <span class="fragment highlight-current-green">credentials = "${file("account.json")}"</span>
+  <span class="fragment highlight-current-green">project = "your project name"</span>
+  <span class="fragment highlight-current-green">region = "us-central1"</span>
 }
-</pre></code>
+</pre>
 
   </script>
 </section> 
 <section data-markdown>
   <script type="text/template">
     
-```
-resource "google_compute_instance" "default" {
-  name         = "test"
-  machine_type = "n1-standard-1"
-  zone         = "us-central1-a"
+<pre>
+<span class="fragment highlight-current-green">resource</span> <span class="fragment highlight-current-green">"google_compute_instance"</span> <span class="fragment highlight-current-green">"default"</span> {
+  <span class="fragment highlight-current-green">name = "test"</span>
+  <span class="fragment highlight-current-green">machine_type = "n1-standard-1"</span>
+  zone = "us-central1-a"
 
-  boot_disk {
+  <span class="fragment highlight-current-green">boot_disk {
     initialize_params {
       image = "debian-cloud/debian-8"
     }
-  }
+  }</span>
 
   scratch_disk {
   }
@@ -365,7 +395,27 @@ resource "google_compute_instance" "default" {
     network = "default"
   }
 }
-```
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## commands
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+## init
+ Initialize a Terraform working directory<!-- .element: class="fragment" -->
+
+## plan<!-- .element: class="fragment" -->
+ Generate and show an execution plan<!-- .element: class="fragment" -->
+
+## apply <!-- .element: class="fragment" -->
+ Builds or changes infrastructure <!-- .element: class="fragment" -->
 
   </script>
 </section> 
@@ -374,20 +424,180 @@ resource "google_compute_instance" "default" {
 <section>
   <section data-markdown>
   <script type="text/template">
-    #
+    ### Terrafrom directory
 
+<pre>
+├── <span class="fragment highlight-current-green" data-fragment-index="1">account.json</span>
+├── <span class="fragment highlight-current-green" data-fragment-index="2">main.tf</span>
+├── <span class="fragment highlight-current-green" data-fragment-index="3">.terraform</span>
+│&nbsp;&nbsp;&nbsp;└── <span class="fragment highlight-current-green" data-fragment-index="3">plugins</span>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="fragment highlight-current-green" data-fragment-index="3">linux_amd64</span>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="3">lock.json</span>
+│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="fragment highlight-current-green" data-fragment-index="3">terraform-provider-google_v1.5.0_x4</span>
+├── <span class="fragment highlight-current-green" data-fragment-index="4">terraform.tfstate</span>
+└── <span class="fragment highlight-current-green" data-fragment-index="4">terraform.tfstate.backup</span>
+</pre>
+
+<!-- &&& -->
+<!-- ### terraform.tfstate -->
+<!--  -->
+<!-- <pre> -->
+<!-- { -->
+<!--   <span class="fragment highlight-current-green">"version": 3,</span> -->
+<!--   <span class="fragment highlight-current-green">"terraform_version": "0.11.2",</span> -->
+<!--   <span class="fragment highlight-current-green">"serial": 4,</span> -->
+<!--   "lineage": "b2e38088-aa38-4863-b2e7-8b30bb4c0994", -->
+<!--   "<span class="fragment highlight-current-green">modules": [ "resources": {} ]</span> -->
+<!-- } -->
+<!--  -->
+<!-- </pre> -->
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#b50152" -->
+## lab 3
+# destroying your first instance
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
 ```
-    apply              Builds or changes infrastructure
+terrafrom destroy
 ```
 
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
 ```
-    init               Initialize a Terraform working directory
+terrafrom apply
 ```
 
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    # remove the instance from the tf file
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
 ```
-    plan               Generate and show an execution plan
+terrafrom apply
 ```
 
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## what did we just do
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+## destroy
+ Destroy Terraform-managed infrastructure<!-- .element: class="fragment" -->
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#6401b5" -->
+## Lab 4
+# importing a resource
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+```
+terraform import \
+google_storage_bucket.asset_store \
+${project_id}-assets
+```
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### well that did not work
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ```
+resource "google_storage_bucket" "asset_store" {
+  name=""
+}
+```
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### cool lets give it another try
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+```
+terraform import \
+google_storage_bucket.asset_store \
+${project_id}-assets
+```
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ### what did we just do...
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+<pre>
+resource <span class="fragment highlight-current-green" data-fragment-index="3">"google_storage_bucket"</span> <span class="fragment highlight-current-green" data-fragment-index="4">"asset_store"</span> {
+  name=<span class="fragment highlight-current-green" data-fragment-index="5">"${project_id}-assets"</span>
+  storage_class = "MULTI_REFIONAL"
+}
+</pre>
+
+<pre>
+terraform import \
+<span class="fragment highlight-current-green" data-fragment-index="1"> <span class="fragment highlight-current-green" data-fragment-index="3">google_storage_bucket</span>.<span class="fragment highlight-current-green" data-fragment-index="4">asset_store</span></span>\
+<span class="fragment highlight-current-green" data-fragment-index="2"><span class="fragment highlight-current-green" data-fragment-index="5">${project_id}-assets</span></span>
+</pre>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    
+## import <!-- .element: class="fragment" -->
+ Import existing infrastructure into Terraform<!-- .element: class="fragment" -->
 
   </script>
 </section> 
