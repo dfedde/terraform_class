@@ -62,7 +62,7 @@ ls
 ```
 &&&
 ## take a look at your newly created project
-[console.cloud.google.com](https://console.cloud.google.com)
+<a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a>
 <pre class='fragment'>
 project name: 
 duncan@fedde.us -> duncan - Terrafrom Class
@@ -80,3 +80,7 @@ duncan@fedde.us -> duncan-terrafrom-class-xj7q
 &&&
 <!-- .slide: data-transition="fade-in" -->
 ![google image](assets/IAM_service_account.png)
+
+# more  slides on how to do this
+
+# account.json

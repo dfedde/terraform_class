@@ -23,7 +23,7 @@ terrafrom output
 ## inputs
 <pre class='fragment'>
 variable "project_name" {
-  default = "duncan-terraform-class-5314e69-assets"
+  default = "duncan-terraform-class-5314e69"
 }
 </pre>
 

@@ -18,30 +18,29 @@ resource "google_project" "class_projects" {
 
 resource "google_project_iam_member" "project" {
   count = "${var.student_count}"
-  project = "${google_project.class_projects.*.number[count.index]}"
+  project = "${google_project.class_projects.*.project_id[count.index]}"
   role    = "roles/editor"
   member  = "user:${element(var.students, count.index)}"
 }
 
-/* resource "google_project_iam_member" "terrafrom" { */
-/*   count = "${var.student_count}" */
-/*   project = "${google_project.class_projects.*.number[count.index]}" */
-/*   role    = "roles/editor" */
-/*   member      = "serviceAccount:${google_service_account.terraform_user.*.email[count.index]}" */
-/* } */
+resource "google_project_iam_member" "terrafrom" {
+  count = "${var.student_count}"
+  project = "${google_project.class_projects.*.project_id[count.index]}"
+  role    = "roles/editor"
+  member      = "serviceAccount:${google_service_account.terraform_user.*.email[count.index]}"
+}
 
-/* resource "google_service_account" "terraform_user" { */
-/*   count = "${var.student_count}" */
-/*   account_id   = "terraform-user" */
-/*   display_name = "Terrafrom User" */
-/*   project = "${google_project.class_projects.*.number[count.index]}" */
-/* } */
+resource "google_service_account" "terraform_user" {
+  count = "${var.student_count}"
+  account_id   = "terraform-user"
+  display_name = "Terraform User"
+  project = "${google_project.class_projects.*.project_id[count.index]}"
+}
 
 resource "google_storage_bucket" "asset_store" {                                           
   count = "${var.student_count}"
   name="${google_project.class_projects.*.project_id[count.index]}-assets"
-  project="${google_project.class_projects.*.number[count.index]}"
+  project="${google_project.class_projects.*.project_id[count.index]}"
   storage_class = "MULTI_REGIONAL"
 }
-
 
