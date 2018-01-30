@@ -173,17 +173,12 @@ resource "google_compute_instance" "instances" {
     ## Install terraform
 your distro may have a way to install terraform <!-- .element: class="fragment" --> 
 
-
-`apt-get install terraform` <!-- .element: class="fragment" --> 
-
-<p class='fragment'> otherwise you can just [download](https://www.terraform.io/downloads.html) the bianry </p> 
+<p class='fragment'> otherwise you can just [download](https://www.terraform.io/downloads.html) the binary </p> 
 
 <pre class='fragment'><code data-trim data-noescape>
-pushd /tmp
-	wget -O terrafom https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip
-	chmod +x terraform
-	export PATH=${pwd)/terraform:$PATH
-popd
+  curl https://releases.hashicorp.com/terraform/0.11.2/terraform_0.11.2_linux_amd64.zip | zcat > terraform
+  chmod +x terraform
+  sudo mv terraform /usr/bin
 </pre></code>
 
 Note: 
