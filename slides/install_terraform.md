@@ -81,6 +81,4 @@ duncan@fedde.us -> duncan-terrafrom-class-xj7q
 <!-- .slide: data-transition="fade-in" -->
 ![google image](assets/IAM_service_account.png)
 
-# more  slides on how to do this
-
-# account.json
+create a new key. select json. save as account.json in terrafrom-class dir
