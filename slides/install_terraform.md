@@ -1,5 +1,5 @@
 <!-- .slide: data-background="#01b564" -->
-## lab 1
+## lab ***
 # Getting Setup
 
 &&&

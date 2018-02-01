@@ -1,5 +1,5 @@
 <!-- .slide: data-background="#01b564" -->
-## Lab 7
+## lab ***
 # inputs and outputs
 
 &&&

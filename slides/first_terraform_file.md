@@ -1,5 +1,5 @@
 <!-- .slide: data-background="#6401b5" -->
-## Lab 2
+## lab ***
 # making a compute instance
 
 &&&
@@ -13,17 +13,25 @@ provider "google" {
 }
 </pre>
 
-<pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
-terrafrom plan
-</pre></code>
+<div class='fragment' data-fragment-index="0" style="position: relative;">
+  <div style="position: absolute; width: 100%">
+  <pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
+  terrafrom apply
+  </pre></code>
+  </div>
 
-<div class='fragment fade-in' data-fragment-index="1"> <pre class='fragment fade-out' data-fragment-index="2"><code data-trim data-noescape>
-terrafrom init
-</pre></code></div>
+  <div style="position: absolute;width: 100%">
+  <div class='fragment fade-in' data-fragment-index="1"> <pre class='fragment fade-out' data-fragment-index="2"><code data-trim data-noescape>
+  terrafrom init
+  </pre></code></div>
+  </div>
 
-<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
-terrafrom plan
-</pre></code>
+  <div style="position: absolute;width: 100%">
+  <pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
+  terrafrom apply
+  </pre></code>
+  </div>
+</div>
 
 &&&
 ## Well That did Nothing
@@ -51,16 +59,15 @@ resource "google_compute_instance" "default" {
 </pre>
 
 <pre><code data-trim data-noescape>
-terrafrom plan
+terraform apply
 </pre></code>
 
 &&&
-### make it real
+### inspect your new infrastucture
 
 <pre><code data-trim data-noescape>
-terrafrom apply
+terraform show
 </pre></code>
-
 &&&
 ### what did we just do...
 &&&
@@ -72,6 +79,9 @@ terrafrom apply
   <span class="fragment highlight-current-green">region = "us-central1"</span>
 }
 </pre>
+
+### <a target="_blank" class="fragment" href="https://www.terraform.io/docs/providers/">suported providers</a>
+
 &&&
 
 <pre>
@@ -101,8 +111,8 @@ terrafrom apply
 ## init
  Initialize a Terraform working directory<!-- .element: class="fragment" -->
 
-## plan<!-- .element: class="fragment" -->
- Generate and show an execution plan<!-- .element: class="fragment" -->
+## show <!-- .element: class="fragment" -->
+ Inspect Terraform state or plan <!-- .element: class="fragment" -->
 
 ## apply <!-- .element: class="fragment" -->
  Builds or changes infrastructure <!-- .element: class="fragment" -->

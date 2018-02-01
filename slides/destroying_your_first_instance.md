@@ -1,5 +1,5 @@
 <!-- .slide: data-background="#b50152" -->
-## lab 3
+## lab ***
 # destroying your first instance
 &&&
 
@@ -21,6 +21,10 @@ terrafrom apply
 ```
 &&&
 ## what did we just do
+&&&
+
+&&&
+## commands
 &&&
 
 ## destroy

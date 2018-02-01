@@ -229,7 +229,7 @@ ls
 <section data-markdown>
   <script type="text/template">
     ## take a look at your newly created project
-[console.cloud.google.com](https://console.cloud.google.com)
+<a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a>
 <pre class='fragment'>
 project name: 
 duncan@fedde.us -> duncan - Terrafrom Class
@@ -260,6 +260,8 @@ duncan@fedde.us -> duncan-terrafrom-class-xj7q
     <!-- .slide: data-transition="fade-in" -->
 ![google image](assets/IAM_service_account.png)
 
+create a new key. select json. save as account.json in terrafrom-class dir
+
   </script>
 </section> 
 
@@ -268,7 +270,7 @@ duncan@fedde.us -> duncan-terrafrom-class-xj7q
   <section data-markdown>
   <script type="text/template">
     <!-- .slide: data-background="#6401b5" -->
-## Lab 2
+## lab 2
 # making a compute instance
 
 
@@ -286,17 +288,25 @@ provider "google" {
 }
 </pre>
 
-<pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
-terrafrom plan
-</pre></code>
+<div class='fragment' data-fragment-index="0" style="position: relative;">
+  <div style="position: absolute; width: 100%">
+  <pre class='fragment fade-out' data-fragment-index="1"><code data-trim data-noescape>
+  terrafrom apply
+  </pre></code>
+  </div>
 
-<div class='fragment fade-in' data-fragment-index="1"> <pre class='fragment fade-out' data-fragment-index="2"><code data-trim data-noescape>
-terrafrom init
-</pre></code></div>
+  <div style="position: absolute;width: 100%">
+  <div class='fragment fade-in' data-fragment-index="1"> <pre class='fragment fade-out' data-fragment-index="2"><code data-trim data-noescape>
+  terrafrom init
+  </pre></code></div>
+  </div>
 
-<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
-terrafrom plan
-</pre></code>
+  <div style="position: absolute;width: 100%">
+  <pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
+  terrafrom apply
+  </pre></code>
+  </div>
+</div>
 
 
   </script>
@@ -332,7 +342,7 @@ resource "google_compute_instance" "default" {
 </pre>
 
 <pre><code data-trim data-noescape>
-terrafrom plan
+terraform apply
 </pre></code>
 
 
@@ -340,12 +350,11 @@ terrafrom plan
 </section> 
 <section data-markdown>
   <script type="text/template">
-    ### make it real
+    ### inspect your new infrastucture
 
 <pre><code data-trim data-noescape>
-terrafrom apply
+terraform show
 </pre></code>
-
 
   </script>
 </section> 
@@ -365,6 +374,9 @@ terrafrom apply
   <span class="fragment highlight-current-green">region = "us-central1"</span>
 }
 </pre>
+
+### <a target="_blank" class="fragment" href="https://www.terraform.io/docs/providers/">suported providers</a>
+
 
   </script>
 </section> 
@@ -406,8 +418,8 @@ terrafrom apply
 ## init
  Initialize a Terraform working directory<!-- .element: class="fragment" -->
 
-## plan<!-- .element: class="fragment" -->
- Generate and show an execution plan<!-- .element: class="fragment" -->
+## show <!-- .element: class="fragment" -->
+ Inspect Terraform state or plan <!-- .element: class="fragment" -->
 
 ## apply <!-- .element: class="fragment" -->
  Builds or changes infrastructure <!-- .element: class="fragment" -->
@@ -454,8 +466,49 @@ terrafrom apply
 <section>
   <section data-markdown>
   <script type="text/template">
-    <!-- .slide: data-background="#b50152" -->
+    <!-- .slide: data-background="#6401b5" -->
 ## lab 3
+# change your instance
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <pre>
+resource "google_compute_instance" "default" {
+  <span class="fragment highlight-current-green">name = "a-really-cool-name"</span>
+  machine_type = "n1-standard-1"
+  zone = "us-central1-a"
+
+  boot_disk {
+    initialize_params {
+      image = "debian-cloud/debian-8"
+    }
+  }
+
+  scratch_disk {
+  }
+
+  network_interface {
+    network = "default"
+  }
+}
+</pre>
+
+<pre class='fragment fade-out' ><code data-trim data-noescape>
+terrafrom apply
+</pre></code>
+
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#b50152" -->
+## lab 4
 # destroying your first instance
 
   </script>
@@ -514,7 +567,7 @@ terrafrom apply
   <section data-markdown>
   <script type="text/template">
     <!-- .slide: data-background="#01b564" -->
-## Lab 4
+## lab 5
 # importing a resource
 
 
@@ -602,7 +655,7 @@ terraform import \
   <section data-markdown>
   <script type="text/template">
     <!-- .slide: data-background="#6401b5" -->
-## Lab 5
+## lab 6
 # upload a file
 
 
@@ -667,7 +720,7 @@ resource "google_storage_bucket_object" "index" {
   <section data-markdown>
   <script type="text/template">
     <!-- .slide: data-background="#b50152" -->
-## Lab 6
+## lab 7
 # add some load balancing
 
 
@@ -785,7 +838,7 @@ terraform graph | dot -Tpng | display
   <section data-markdown>
   <script type="text/template">
     <!-- .slide: data-background="#01b564" -->
-## Lab 7
+## lab 8
 # inputs and outputs
 
 
@@ -817,7 +870,7 @@ terrafrom output
     ## inputs
 <pre class='fragment'>
 variable "project_name" {
-  default = "duncan-terraform-class-5314e69-assets"
+  default = "duncan-terraform-class-5314e69"
 }
 </pre>
 
@@ -856,6 +909,37 @@ resource "google_storage_bucket" "asset_store" {
 
 ## output<!-- .element: class="fragment" -->
   Read an output from a state file<!-- .element: class="fragment" -->
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <!-- .slide: data-background="#6401b5" -->
+## lab 9
+# handling drift
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    #### make some changes in the webui
+
+<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
+terrafrom plan
+</pre></code>
+
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## plan<!-- .element: class="fragment" -->
+ Generate and show an execution plan<!-- .element: class="fragment" -->
+
 
   </script>
 </section> 

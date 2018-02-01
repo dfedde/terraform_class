@@ -1,6 +1,6 @@
 <!-- .slide: data-background="#b50152" -->
 ## lab ***
-# add some load balancing
+# making a backend
 
 &&&
 ## create the load balancer

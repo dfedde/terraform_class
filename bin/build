@@ -23,10 +23,15 @@ class Deck
   end
 
   def each
+    lab_count = 1
     slide_break = "%%%\n"
     vertical_break = "&&&\n"
     @slides.each do |page|
       slide_file = File.read(File.join(slide_dir, page))
+      if slide_file.include?('lab ***')
+        slide_file.sub!('lab ***', "lab #{lab_count}")
+        lab_count += 1
+      end
       slide_list = slide_file.split(slide_break).map do |single_slide|
         single_slide.split(vertical_break)
       end
