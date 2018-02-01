@@ -4,7 +4,7 @@
 &&&
 <pre>
 resource "google_compute_instance" "default" {
-  <span class="fragment highlight-current-green">name = "a-really-cool-name"</span>
+  <span class="fragment highlight-green">name = "a-really-cool-name"</span>
   machine_type = "n1-standard-1"
   zone = "us-central1-a"
 
@@ -31,7 +31,7 @@ terrafrom apply
 <pre>
 resource "google_compute_instance" "default" {
   name = "a-really-cool-name"
-  <span class="fragment highlight-current-green">machine_type = "n1-standard-1"</span>
+  <span class="fragment highlight-green">machine_type = "n1-standard-1"</span>
   zone = "us-central1-a"
 
   boot_disk {

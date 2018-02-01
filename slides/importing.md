@@ -33,13 +33,14 @@ ${project_id}-assets
 <pre>
 resource <span class="fragment highlight-current-green" data-fragment-index="3">"google_storage_bucket"</span> <span class="fragment highlight-current-green" data-fragment-index="4">"asset_store"</span> {
   name=<span class="fragment highlight-current-green" data-fragment-index="5">"${project_id}-assets"</span>
-  storage_class = "MULTI_REFIONAL"
+  storage_class = "MULTI_REGIONAL"
+  force_delete = "true"
 }
 </pre>
 
 <pre>
 terraform import \
-<span class="fragment highlight-current-green" data-fragment-index="1"> <span class="fragment highlight-current-green" data-fragment-index="3">google_storage_bucket</span>.<span class="fragment highlight-current-green" data-fragment-index="4">asset_store</span></span>\
+<span class="fragment highlight-current-green" data-fragment-index="1"> <span class="fragment highlight-current-green" data-fragment-index="3">google_storage_bucket</span>.<span class="fragment highlight-current-green" data-fragment-index="4">asset_store</span></span> \
 <span class="fragment highlight-current-green" data-fragment-index="2"><span class="fragment highlight-current-green" data-fragment-index="5">${project_id}-assets</span></span>
 </pre>
 &&&

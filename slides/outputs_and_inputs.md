@@ -22,9 +22,7 @@ terrafrom output
 &&&
 ## inputs
 <pre class='fragment'>
-variable "project_name" {
-  default = "duncan-terraform-class-5314e69"
-}
+variable "project_name" {}
 </pre>
 
 <pre class='fragment'>
@@ -46,9 +44,60 @@ resource "google_storage_bucket" "asset_store" {
 </pre>
 
 &&&
-### what did we just do...
+### but thats not great
 &&&
 
+### we could do
+
+```
+terrafrom apply -var 'project_name=duncan-terrafrom-class'
+```
+&&&
+### but that is still not great for this
+&&&
+<pre>
+variable "project_name" {
+  default = "duncan-terraform-class"
+}
+</pre>
+
+&&&
+### what did we just do...
+&&&
+<!-- .slide:  data-transition="slide-in fade-out" -->
+<pre>
+<span class="fragment highlight-current-green">variable</span> <span class="fragment highlight-current-green">"project_name"</span> {
+
+  <span class="fragment highlight-current-green">default = "duncan-terraform-class"</span>
+}
+</pre>
+&&&
+<!-- .slide: data-transition-speed="fast" data-transition="fade-in fade-out" -->
+<pre>
+variable "project_name' {
+  <span style="color: #17ff2e;">type = "string"</span>
+  default = "duncan-terraform-class"
+}
+</pre>
+&&&
+<!-- .slide: data-transition-speed="fast" data-transition="fade-in fade-out" -->
+<pre>
+variable "project_name' {
+  <span style="color: #17ff2e;">type = "map"</span>
+  default = {name: "value"}
+}
+</pre>
+&&&
+<!-- .slide:  data-transition="fade-in slide-out" -->
+<pre>
+variable "project_name' {
+  <span style="color: #17ff2e;">type = "list"</span>
+  default = ['val1', 'val2']
+}
+</pre>
+&&&
+### commands
+&&&
 ## refresh
  Update local state file against real resources<!-- .element: class="fragment" -->
 

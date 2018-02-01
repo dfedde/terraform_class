@@ -70,15 +70,31 @@ duncan@fedde.us -> duncan - Terrafrom Class
 
 <pre class='fragment'>
 project id: 
-duncan@fedde.us -> duncan-terrafrom-class-xj7q
+duncan@fedde.us -> duncan-terrafrom-class-x7q
 </pre>
+<a style="display: none;" href="asstes/x7q.jpg">x7q</a>
 &&&
+
 ## create a key file for your new project
 &&&
-<!-- .slide: data-transition="slide-in fade-out" -->
+<!-- .slide: data-transition="fade-in" -->
+![google image](assets/GCP_header.png)
+&&&
+<!-- .slide: data-transition="fade-in" -->
+![google image](assets/GCP_menu.png)
+&&&
+<!-- .slide: data-transition="fade-in" -->
 ![google image](assets/IAM_menu.png)
 &&&
 <!-- .slide: data-transition="fade-in" -->
 ![google image](assets/IAM_service_account.png)
+&&&
+<!-- .slide: data-transition="fade-in slide-out" -->
+![google image](assets/Service_account_key.png)
 
-create a new key. select json. save as account.json in terrafrom-class dir
+save as account.json in terrafrom-class dir
+&&&
+### enable the GCP api
+## <a href="https://console.developers.google.com/apis/api/compute.googleapis.com/overview" target="_blank">enable api</a>
+
+

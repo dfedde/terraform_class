@@ -6,10 +6,10 @@
 #### make some changes in the webui
 
 <pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
-terrafrom plan
+terrafrom apply
 </pre></code>
 
-&&&
-## plan<!-- .element: class="fragment" -->
- Generate and show an execution plan<!-- .element: class="fragment" -->
+<!-- &&& -->
+<!-- ## plan<!-- .element: class="fragment" -->
+<!--  Generate and show an execution plan<!-- .element: class="fragment" -->
 

@@ -13,6 +13,7 @@ slides:
   - importing.md
   - add_some_files.md
   - add_load_balancing.md
-  - outputs_and_inputs.md
   - handling_drift.md
+  - outputs_and_inputs.md
+  - using_a_module.md
   - making_a_backend.md

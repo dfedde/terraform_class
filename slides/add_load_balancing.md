@@ -50,6 +50,7 @@ resource "google_compute_global_forwarding_rule" "default" {
 resource "google_storage_bucket" "asset_store" {
   name="duncan-terraform-class-5314e69-assets"
   storage_class = "MULTI_REGIONAL"
+  force_delete = "true"
 
   website {
     main_page_suffix = "index.html"
