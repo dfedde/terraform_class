@@ -36,5 +36,47 @@ db.execute "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCR
 
 post '/student' do
 	db.execute "INSERT INTO students (email) VALUES(?)", params[:email]
-	'you are added to the db. An project will be crated for you when duncan deams it good'
+  <<~HTML
+  <head>
+   <style>
+   body{
+     background-color: #222;
+   }
+
+   .container{
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     height:100%;
+     flex-direction: column;
+   }
+
+   .text{
+     font-family: "Source Sans Pro", Helvetica, sans-serif;
+     color:#fff;
+     text-align:center;
+     text-transform: uppercase;
+     margin: 4px;
+   }
+   .title{
+     font-size: 42px;
+   }
+   .paragraph{
+     font-size: 24px;
+   }
+   </style>
+  </head>
+  <body >
+    <div class="container" >
+      <div>
+        <h1 class="text title">
+        you are added to the db <br> A project will be created for you shortly
+        </h1>
+      </div>
+      <div>
+        <p class="text paragraph">(you may close this tab)</p>
+      <div>
+    </div>
+  </body>
+  HTML
 end

@@ -3,7 +3,7 @@
 # making a compute instance
 
 &&&
-## Set up your terraform file.
+## Set up your terraform file
 
 <pre>
 provider "google" {
@@ -58,7 +58,7 @@ resource "google_compute_instance" "default" {
 }
 </pre>
 
-<pre><code data-trim data-noescape>
+<pre class='fragment'><code data-trim data-noescape>
 terraform apply
 </pre></code>
 

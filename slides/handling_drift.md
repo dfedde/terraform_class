@@ -5,8 +5,8 @@
 &&&
 #### make some changes in the webui
 
-<pre class='fragment fade-in'><code data-trim data-noescape>
-terraform apply
+<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
+terrafrom apply
 </pre></code>
 
 <!-- &&& -->

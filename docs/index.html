@@ -27,9 +27,9 @@
         <section>
   <section data-markdown>
   <script type="text/template">
-    # Terraform
+    # <img style="border:none; background: none; box-shadow: none;"src="assets/terraform-color.svg" alt-text="terraform">
 
-### [duncan.fedde.us/terraform_class](http://duncan.fedde.us/terraform_class)
+#### [duncan.fedde.us/terraform_class](http://duncan.fedde.us/terraform_class)
 
 
   </script>
@@ -54,6 +54,17 @@
   <section data-markdown>
   <script type="text/template">
     
+## to<span class='fragment' data-fragment-index='2'>.</span><span class='fragment' data-fragment-index="3">.</span><span class='fragment' data-fragment-index="4">.</span>
+  <small class='fragment' data-fragment-index='1' >DRUM ROLL PLEASE</small>
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    
 ## deploy a static web page
 
 
@@ -65,12 +76,12 @@
   <section data-markdown>
   <script type="text/template">
     <h2>Yes... but how?</h2>
-<pre class="fragment"><code data-trim contenteditable>
-10 I'll run a lab
-20 You will pair up and try the lab on your own
-30 we'll come back and discuss the lab
-40 GOTO 10
-</code></pre>
+<pre class="fragment">
+<span style='color: #dca3a3;'>10</span> I'll run a lab
+<span style='color: #dca3a3;'>20</span> You will try the lab on your own
+<span style='color: #dca3a3;'>30</span> we'll come back and discuss the lab
+<span style='color: #dca3a3;'>40</span> <span style='color: #e3ceab;'>GOTO</span> <span style='color: #8cd0d3;'>10</span>
+</pre>
 
   </script>
 </section> 
@@ -156,14 +167,42 @@ resource "google_compute_instance" "instances" {
   <script type="text/template">
     
 ## Make a google project
+  <style>
+  .button {
+    background-color: #01b564;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    width: 100%
+} 
+.bounding-box {
+    text-align: left;
+    margin-left: auto !important;
+    width: 50%;
+    margin-right: auto !important;
+    padding: 0 10px;
+}
+.text-box {
+  vertical-align: middle;
+width: 100%;
+padding: 0;
+border: 0;
+font-size: 32px;
+}
+  </style>
 
-<div style='text-align:center'>
 <form action="http://192.168.50.237:4567/student" method="post" target="_blank">
-  <label>Email: <br><small>must be linked to a valid google account</small></label><br>
-  <input type="email" name="email"><br>
-  <input type="submit" value="Make a Google Project">
-</form> 
+<div class="bounding-box">
+ <div>
+  <label>Email:</label> <input class="text-box" type="email" name="email"><br><small>(must be linked to a valid google account)</small><br>
+  </div>
+  <input class="button" type="submit" value="Make a Google Project">
 </div>
+</form> 
 
 
   </script>
@@ -310,7 +349,7 @@ save as account.json in terrafrom-class dir
 </section> 
 <section data-markdown>
   <script type="text/template">
-    ## Set up your terraform file.
+    ## Set up your terraform file
 
 <pre>
 provider "google" {
@@ -373,7 +412,7 @@ resource "google_compute_instance" "default" {
 }
 </pre>
 
-<pre><code data-trim data-noescape>
+<pre class='fragment'><code data-trim data-noescape>
 terraform apply
 </pre></code>
 
@@ -938,8 +977,8 @@ terraform graph | dot -Tpng | display
   <script type="text/template">
     #### make some changes in the webui
 
-<pre class='fragment fade-in'><code data-trim data-noescape>
-terraform apply
+<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
+terrafrom apply
 </pre></code>
 
 <!-- &&& -->

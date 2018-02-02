@@ -5,14 +5,42 @@
 &&&
 
 ## Make a google project
+  <style>
+  .button {
+    background-color: #01b564;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 32px;
+    width: 100%
+} 
+.bounding-box {
+    text-align: left;
+    margin-left: auto !important;
+    width: 50%;
+    margin-right: auto !important;
+    padding: 0 10px;
+}
+.text-box {
+  vertical-align: middle;
+width: 100%;
+padding: 0;
+border: 0;
+font-size: 32px;
+}
+  </style>
 
-<div style='text-align:center'>
 <form action="http://192.168.50.237:4567/student" method="post" target="_blank">
-  <label>Email: <br><small>must be linked to a valid google account</small></label><br>
-  <input type="email" name="email"><br>
-  <input type="submit" value="Make a Google Project">
-</form> 
+<div class="bounding-box">
+ <div>
+  <label>Email:</label> <input class="text-box" type="email" name="email"><br><small>(must be linked to a valid google account)</small><br>
+  </div>
+  <input class="button" type="submit" value="Make a Google Project">
 </div>
+</form> 
 
 &&&
 ## Install terraform
