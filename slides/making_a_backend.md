@@ -1,7 +1,8 @@
-<!-- .slide: data-background="#b50152" -->
+<!-- .slide: data-background="#6401b5" -->
 ## lab ***
 # make a backend
 &&&
+#### make a bucket to store the state in
 <pre>
 resource "google_storage_bucket" "terraform_state" {
   name="${var.project_name}-terraform"

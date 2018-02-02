@@ -13,7 +13,7 @@ terraform destroy
 terraform apply
 ```
 &&&
-# remove the instance from the tf file
+### remove the instance from the tf file
 &&&
 
 ```
