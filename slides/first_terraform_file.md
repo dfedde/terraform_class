@@ -3,7 +3,7 @@
 # making a compute instance
 
 &&&
-## Set up your terrafrom file.
+## Set up your terraform file.
 
 <pre>
 provider "google" {

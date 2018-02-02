@@ -17,3 +17,6 @@ slides:
   - outputs_and_inputs.md
   - using_a_module.md
   - making_a_backend.md
+  - terraform_dir2.md
+  - making_workspaces.md
+  - removing_a_resource_from_terraform.md

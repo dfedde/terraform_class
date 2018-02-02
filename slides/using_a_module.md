@@ -13,7 +13,7 @@
 
 <pre>
 module "static-website" {
-  source = "github.com/dfedde/terrafrom-google-static-website"
+  source = "github.com/dfedde/terraform-google-static-website"
   name = "game"
   bucket = "${google_storage_bucket.asset_store.name}"
 }
@@ -31,7 +31,7 @@ output "load_balancer_address" {
 
 <pre>
 <span class="fragment highlight-current-green">module</span> <span class="fragment highlight-current-green">"static-website"</span> {
-  <span class="fragment highlight-current-green">source = "github.com/dfedde/terrafrom-google-static-website"</span>
+  <span class="fragment highlight-current-green">source = "github.com/dfedde/terraform-google-static-website"</span>
   <span class="fragment highlight-current-green"><span class="fragment highlight-current-green">name = "game"</span>
   <span class="fragment highlight-current-green">bucket = "${google_storage_bucket.asset_store.name}"</span></span>
 }

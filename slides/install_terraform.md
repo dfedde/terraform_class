@@ -1,6 +1,6 @@
 <!-- .slide: data-background="#01b564" -->
 ## lab ***
-# Getting Setup
+# Getting Set up
 
 &&&
 
@@ -65,12 +65,12 @@ ls
 <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a>
 <pre class='fragment'>
 project name: 
-duncan@fedde.us -> duncan - Terrafrom Class
+duncan@fedde.us -> duncan - Terraform Class
 </pre>
 
 <pre class='fragment'>
 project id: 
-duncan@fedde.us -> duncan-terrafrom-class-x7q
+duncan@fedde.us -> duncan-terraform-class-x7q
 </pre>
 <a style="display: none;" href="asstes/x7q.jpg">x7q</a>
 &&&

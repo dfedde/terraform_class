@@ -12,11 +12,11 @@ output "load_balancer_address" {
 </pre>
 
 <pre class='fragment'><code data-trim data-noescape>
-terrafrom refresh
+terraform refresh
 </pre></code>
 
 <pre class='fragment'><code data-trim data-noescape>
-terrafrom output
+terraform output
 </pre></code>
 
 &&&
@@ -50,7 +50,7 @@ resource "google_storage_bucket" "asset_store" {
 ### we could do
 
 ```
-terrafrom apply -var 'project_name=duncan-terrafrom-class'
+terraform apply -var 'project_name=duncan-terraform-class'
 ```
 &&&
 ### but that is still not great for this

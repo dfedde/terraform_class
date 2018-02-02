@@ -4,25 +4,23 @@
 &&&
 
 ```
-terrafrom destroy
+terraform destroy
 ```
 
 &&&
 
 ```
-terrafrom apply
+terraform apply
 ```
 &&&
 # remove the instance from the tf file
 &&&
 
 ```
-terrafrom apply
+terraform apply
 ```
 &&&
 ## what did we just do
-&&&
-
 &&&
 ## commands
 &&&

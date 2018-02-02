@@ -24,7 +24,7 @@ resource "google_compute_instance" "default" {
 </pre>
 
 <pre class='fragment' ><code data-trim data-noescape>
-terrafrom apply
+terraform apply
 </pre></code>
 
 &&&
@@ -50,7 +50,7 @@ resource "google_compute_instance" "default" {
 </pre>
 
 <pre class='fragment' ><code data-trim data-noescape>
-terrafrom apply
+terraform apply
 </pre></code>
 
 &&&

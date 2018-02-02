@@ -4,7 +4,7 @@
 &&&
 <pre>
 resource "google_storage_bucket" "terraform_state" {
-  name="${var.project_name}-terrafrom"
+  name="${var.project_name}-terraform"
   storage_class = "MULTI_REGIONAL"
   force_destroy = "true"
 }
@@ -18,6 +18,10 @@ terraform {
   }
 }
 </pre>
+&&&
+```
+rm -rf terraform.tfstate*
+```
 &&&
 # what did we do
 &&&

@@ -1,4 +1,4 @@
-### Terrafrom directory
+### Terraform directory
 
 <pre>
 ├── <span class="fragment highlight-current-green" data-fragment-index="1">account.json</span>
