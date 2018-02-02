@@ -24,6 +24,8 @@ terraform {
 rm -rf terraform.tfstate*
 ```
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 # what did we do
 &&&
 #### our state is now stored remotely

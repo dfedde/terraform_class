@@ -26,6 +26,8 @@ output "load_balancer_address" {
 </pre>
 
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 # what did we do
 &&&
 

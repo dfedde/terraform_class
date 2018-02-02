@@ -9,6 +9,9 @@
 terrafrom apply
 </pre></code>
 
+&&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 <!-- &&& -->
 <!-- ## plan<!-- .element: class="fragment" -->
 <!--  Generate and show an execution plan<!-- .element: class="fragment" -->

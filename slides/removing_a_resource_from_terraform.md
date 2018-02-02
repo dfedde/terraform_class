@@ -14,6 +14,8 @@ terraform state rm google_storage_bucket.terraform_state
  - google_storage_bucket.terraform_state
 &&&
 
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 # what did we do
 &&&
 ## commands

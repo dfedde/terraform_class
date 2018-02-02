@@ -4,38 +4,7 @@ require 'sinatra'
 require 'sqlite3'
 require 'sinatra/cross_origin'
 
-set port: 4567
-set bind: '0.0.0.0'
-set :enviroment, :production
-set :allow_credentials, true
-set :expose_headers, ['Content-Type', 'Cookie']
-
-configure do
-	enable :cross_origin
-end
-
-def random_string length
-	length.times.inject('') do |m,_| 
-		(
-			('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a
-	).sample(1).first.to_s + m
-	end
-end
-
-use Rack::Session::Cookie, :key => 'done.user',
-	:path => '/',
-	:expire_after => 2592000,
-	:secret => (random_string 50)
-
-db = SQLite3::Database.new ".data/test.db"
-# db = SQLite3::Database.new ":memory:"
-puts db.get_first_value 'SELECT SQLITE_VERSION()'
-
-db.execute "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, 
-		email TEXT)"
-
-post '/student' do
-	db.execute "INSERT INTO students (email) VALUES(?)", params[:email]
+def page
   <<~HTML
   <head>
    <style>
@@ -61,6 +30,50 @@ post '/student' do
    .title{
      font-size: 42px;
    }
+
+   .paragraph{
+     font-size: 24px;
+   }
+
+   .mid{
+    font-size: 36px;
+   }
+   </style>
+  </head>
+  <body >
+    <div class="container" >
+        <div>
+       #{yield}
+        </div>
+        <div>
+          <p class="text paragraph">(you may close this tab)</p>
+        <div>
+    </div>
+  </body>
+  HTML
+end
+
+def list_page
+  <<~HTML
+  <head>
+   <style>
+   body{
+     background-color: #222;
+   }
+
+   .container{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+   }
+
+   .text{
+     font-family: "Source Sans Pro", Helvetica, sans-serif;
+     color:#fff;
+     text-transform: uppercase;
+     margin: 4px;
+   }
+
    .paragraph{
      font-size: 24px;
    }
@@ -68,15 +81,162 @@ post '/student' do
   </head>
   <body >
     <div class="container" >
-      <div>
-        <h1 class="text title">
-        you are added to the db <br> A project will be created for you shortly
-        </h1>
-      </div>
-      <div>
-        <p class="text paragraph">(you may close this tab)</p>
-      <div>
+      #{yield}
     </div>
   </body>
   HTML
 end
+def succses_message(email)
+  page do
+    <<~HTML
+      <h1 class="text title">
+      hello #{Rack::Utils.escape_html email.split('@').first},<br>
+      you are added to the db <br>
+      A project will be created for you shortly
+      </h1>
+    HTML
+  end
+end
+
+def bad_email_message(email)
+  page do
+    <<~HTML
+          <h1 class="text title">
+          The email "#{Rack::Utils.escape_html email}" is invalid
+          </h1>
+    HTML
+  end
+end
+
+def must_login_message
+  page do
+    <<~HTML
+          <h1 class="text title">
+            you must login for this to work
+          </h1>
+    HTML
+  end
+end
+
+def invalid_lab_message
+  page do
+    <<~HTML
+      <h1 class="text title">
+        not a valid lab number
+      </h1>
+    HTML
+  end
+end
+
+def lab_finished_message
+  page do
+    <<~HTML
+      <h1 class="text title">
+        lab finished at #{Time.now}
+      </h1>
+    HTML
+  end
+end
+
+def students_finished_message(students, lab)
+students = %w{jaskfl asjdlfkj asjldfjl jasfi jasif jfeiwaj  fneiwaoj }
+students += %w{jaskfl asjdlfkj asjldfjl jasfi jasif jfeiwaj  fneiwaoj }
+students += %w{jaskfl asjdlfkj asjldfjl jasfi jasif jfeiwaj  fneiwaoj }
+students += %w{jaskfl asjdlfkj asjldfjl jasfi jasif jfeiwaj  fneiwaoj }
+students += %w{jaskfl asjdlfkj asjldfjl jasfi jasif jfeiwaj  fneiwaoj }
+  list_page do
+    <<~HTML
+      <div>
+      <p class=\"text paragraph\">#{students.count} students finished lab #{lab}</p>
+      <ul>
+        #{students.inject('') do |m,s|
+           m + "<li><span class=\"text paragraph\">#{Rack::Utils.escape_html s}</span></li>"
+          end
+        }
+      </ul>
+      </div>
+    HTML
+  end
+end
+
+set port: 4567
+set bind: '0.0.0.0'
+set :enviroment, :production
+set :allow_credentials, true
+set :expose_headers, ['Content-Type', 'Cookie']
+
+configure do
+	enable :cross_origin
+end
+
+def random_string length
+	@random_string ||= length.times.inject('') do |m,_| 
+		(
+			('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a
+	).sample(1).first.to_s + m
+	end
+end
+
+use Rack::Session::Cookie, :key => 'done.user',
+	:path => '/',
+	:expire_after => 2592000,
+	:secret => (random_string 50)
+
+# FileUtils.touch(".data/test.db")
+# db = SQLite3::Database.new ".data/test.db"
+db = SQLite3::Database.new ":memory:"
+puts db.get_first_value 'SELECT SQLITE_VERSION()'
+
+db.execute "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, 		email TEXT)"
+
+db.execute "CREATE TABLE IF NOT EXISTS lab_events (id INTEGER PRIMARY KEY AUTOINCREMENT, student_id INTEGER, lab_id INTEGER, done_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP)"
+
+# at_exit do
+#   db.close
+#   FileUtils.mv(".data/test.db", ".data/test.db.bak")
+# end
+
+post '/student' do
+  email = params[:email]
+
+  unless params[:email] =~ /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i
+    bad_email_message(email)
+  end
+
+  students = db.execute('SELECT DISTINCT email, id FROM students').to_h
+  unless students.keys.include? email
+    db.execute "INSERT INTO students (email) VALUES (?)", email
+    puts email
+  end
+  students = db.execute('SELECT DISTINCT email, id FROM students').to_h
+
+  session[:student] = students[email]
+  succses_message(email)
+end
+
+get '/done/:lab' do
+  puts session
+  student = session[:student].to_i
+  lab_id = params[:lab].to_i
+
+  students = db.execute('SELECT DISTINCT id FROM students').flatten
+
+  return must_login_message unless students.include? student
+  return invalid_lab_message unless lab_id > 0
+  db.execute "INSERT INTO lab_events (student_id, lab_id) VALUES (?, ?)", student, lab_id
+
+  lab_finished_message
+end
+
+get "/done-students/:lab" do
+  lab_id = params[:lab].to_i
+  return invalid_lab_message unless lab_id > 0
+
+  students = db.execute('select email 
+                        from students join lab_events on students.id = student_id 
+                        where lab_id = ?', lab_id
+                       ).flatten
+
+  students_finished_message(students, lab_id)
+end
+

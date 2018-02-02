@@ -27,6 +27,8 @@ google_storage_bucket.asset_store \
 ${project_id}-assets
 ```
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 ### what did we just do...
 &&&
 

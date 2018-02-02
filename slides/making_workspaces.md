@@ -46,6 +46,8 @@ terraform workspace select default
 terrafrom apply
 ```
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 # what did we do
 &&&
 <pre>

@@ -332,6 +332,11 @@ save as account.json in terrafrom-class dir
 ## <a href="https://console.developers.google.com/apis/api/compute.googleapis.com/overview" target="_blank">enable api</a>
 
 
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/1" target="_blank">done</a>
 
   </script>
 </section> 
@@ -426,6 +431,12 @@ terraform apply
 <pre><code data-trim data-noescape>
 terraform show
 </pre></code>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/2" target="_blank">done</a>
 
   </script>
 </section> 
@@ -605,6 +616,12 @@ terraform apply
 </section> 
 <section data-markdown>
   <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/3" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
     ## what did we just do
 
   </script>
@@ -665,6 +682,12 @@ terraform apply
 ```
 terraform apply
 ```
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/4" target="_blank">done</a>
 
   </script>
 </section> 
@@ -746,6 +769,12 @@ ${project_id}-assets
 </section> 
 <section data-markdown>
   <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/5" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
     ### what did we just do...
 
   </script>
@@ -812,6 +841,12 @@ resource "google_storage_bucket_object" "index" {
 }
 </pre>
 
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/6" target="_blank">done</a>
 
   </script>
 </section> 
@@ -947,6 +982,12 @@ resource "google_storage_object_acl" "index" {
 </section> 
 <section data-markdown>
   <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/7" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
     ## let's try out another command
 
   </script>
@@ -981,7 +1022,18 @@ terraform graph | dot -Tpng | display
 terrafrom apply
 </pre></code>
 
-<!-- &&& -->
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/8" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    <!-- &&& -->
 <!-- ## plan<!-- .element: class="fragment" -->
 <!--  Generate and show an execution plan<!-- .element: class="fragment" -->
 
@@ -1080,6 +1132,12 @@ variable "project_name" {
 }
 </pre>
 
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/9" target="_blank">done</a>
 
   </script>
 </section> 
@@ -1198,6 +1256,12 @@ output "load_balancer_address" {
 </section> 
 <section data-markdown>
   <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/10" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
     # what did we do
 
   </script>
@@ -1228,7 +1292,8 @@ output "load_balancer_address" {
 </section> 
 <section data-markdown>
   <script type="text/template">
-    <pre>
+    #### make a bucket to store the state in
+<pre>
 resource "google_storage_bucket" "terraform_state" {
   name="${var.project_name}-terraform"
   storage_class = "MULTI_REGIONAL"
@@ -1256,6 +1321,12 @@ terraform {
     ```
 rm -rf terraform.tfstate*
 ```
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/11" target="_blank">done</a>
 
   </script>
 </section> 
@@ -1388,6 +1459,12 @@ terrafrom apply
 </section> 
 <section data-markdown>
   <script type="text/template">
+    ## <a href="http://192.168.50.237:4567/done/12" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
     # what did we do
 
   </script>
@@ -1461,7 +1538,13 @@ terraform state rm google_storage_bucket.terraform_state
 <section data-markdown>
   <script type="text/template">
     
-# what did we do
+## <a href="http://192.168.50.237:4567/done/13" target="_blank">done</a>
+
+  </script>
+</section> 
+<section data-markdown>
+  <script type="text/template">
+    # what did we do
 
   </script>
 </section> 

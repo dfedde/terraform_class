@@ -66,6 +66,8 @@ resource "google_storage_object_acl" "index" {
 }
 </pre>
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 ## let's try out another command
 &&&
 

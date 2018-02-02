@@ -54,6 +54,8 @@ terraform apply
 </pre></code>
 
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 ## what did we just do
 &&&
 

@@ -62,6 +62,8 @@ variable "project_name" {
 </pre>
 
 &&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
+&&&
 ### what did we just do...
 &&&
 <!-- .slide:  data-transition="slide-in fade-out" -->

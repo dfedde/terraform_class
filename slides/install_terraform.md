@@ -125,4 +125,5 @@ save as account.json in terrafrom-class dir
 ### enable the GCP api
 ## <a href="https://console.developers.google.com/apis/api/compute.googleapis.com/overview" target="_blank">enable api</a>
 
-
+&&&
+## <a href="http://$IP$:4567/done/***" target="_blank">done</a>
