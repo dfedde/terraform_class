@@ -40,7 +40,7 @@
   <section data-markdown>
   <script type="text/template">
     
-## what are we going to be doing today???
+#### what are we going to be doing today???
 
 - Using GCP <!-- .element: class="fragment" -->
 - Using Terraform <!-- .element: class="fragment" -->
@@ -68,7 +68,7 @@
 <pre class="fragment"><code data-trim contenteditable>
 10 I'll run a lab
 20 You will pair up and try the lab on your own
-30 we'll come back and discus the lab
+30 we'll come back and discuss the lab
 40 GOTO 10
 </code></pre>
 
@@ -89,7 +89,7 @@
 <section>
   <section data-markdown>
   <script type="text/template">
-    ## what is terrafrom
+    ## what is terraform
 
 
   </script>
@@ -147,7 +147,7 @@ resource "google_compute_instance" "instances" {
   <script type="text/template">
     <!-- .slide: data-background="#01b564" -->
 ## lab 1
-# Getting Setup
+# Getting Set up
 
 
   </script>
@@ -232,12 +232,12 @@ ls
 <a href="https://console.cloud.google.com" target="_blank">console.cloud.google.com</a>
 <pre class='fragment'>
 project name: 
-duncan@fedde.us -> duncan - Terrafrom Class
+duncan@fedde.us -> duncan - Terraform Class
 </pre>
 
 <pre class='fragment'>
 project id: 
-duncan@fedde.us -> duncan-terrafrom-class-x7q
+duncan@fedde.us -> duncan-terraform-class-x7q
 </pre>
 <a style="display: none;" href="asstes/x7q.jpg">x7q</a>
 
@@ -310,7 +310,7 @@ save as account.json in terrafrom-class dir
 </section> 
 <section data-markdown>
   <script type="text/template">
-    ## Set up your terrafrom file.
+    ## Set up your terraform file.
 
 <pre>
 provider "google" {
@@ -463,7 +463,7 @@ terraform show
 <section>
   <section data-markdown>
   <script type="text/template">
-    ### Terrafrom directory
+    ### Terraform directory
 
 <pre>
 ├── <span class="fragment highlight-current-green" data-fragment-index="1">account.json</span>
@@ -528,7 +528,7 @@ resource "google_compute_instance" "default" {
 </pre>
 
 <pre class='fragment' ><code data-trim data-noescape>
-terrafrom apply
+terraform apply
 </pre></code>
 
 
@@ -558,7 +558,7 @@ resource "google_compute_instance" "default" {
 </pre>
 
 <pre class='fragment' ><code data-trim data-noescape>
-terrafrom apply
+terraform apply
 </pre></code>
 
 
@@ -599,7 +599,7 @@ Resource actions are indicated with the following symbols:
   <script type="text/template">
     
 ```
-terrafrom destroy
+terraform destroy
 ```
 
 
@@ -609,7 +609,7 @@ terrafrom destroy
   <script type="text/template">
     
 ```
-terrafrom apply
+terraform apply
 ```
 
   </script>
@@ -624,7 +624,7 @@ terrafrom apply
   <script type="text/template">
     
 ```
-terrafrom apply
+terraform apply
 ```
 
   </script>
@@ -632,12 +632,6 @@ terrafrom apply
 <section data-markdown>
   <script type="text/template">
     ## what did we just do
-
-  </script>
-</section> 
-<section data-markdown>
-  <script type="text/template">
-    
 
   </script>
 </section> 
@@ -944,8 +938,8 @@ terraform graph | dot -Tpng | display
   <script type="text/template">
     #### make some changes in the webui
 
-<pre class='fragment fade-in' data-fragment-index="2"><code data-trim data-noescape>
-terrafrom apply
+<pre class='fragment fade-in'><code data-trim data-noescape>
+terraform apply
 </pre></code>
 
 <!-- &&& -->
@@ -978,11 +972,11 @@ output "load_balancer_address" {
 </pre>
 
 <pre class='fragment'><code data-trim data-noescape>
-terrafrom refresh
+terraform refresh
 </pre></code>
 
 <pre class='fragment'><code data-trim data-noescape>
-terrafrom output
+terraform output
 </pre></code>
 
 
@@ -1028,7 +1022,7 @@ resource "google_storage_bucket" "asset_store" {
 ### we could do
 
 ```
-terrafrom apply -var 'project_name=duncan-terrafrom-class'
+terraform apply -var 'project_name=duncan-terraform-class'
 ```
 
   </script>
@@ -1148,7 +1142,7 @@ variable "project_name' {
     
 <pre>
 module "static-website" {
-  source = "github.com/dfedde/terrafrom-google-static-website"
+  source = "github.com/dfedde/terraform-google-static-website"
   name = "game"
   bucket = "${google_storage_bucket.asset_store.name}"
 }
@@ -1174,7 +1168,7 @@ output "load_balancer_address" {
     
 <pre>
 <span class="fragment highlight-current-green">module</span> <span class="fragment highlight-current-green">"static-website"</span> {
-  <span class="fragment highlight-current-green">source = "github.com/dfedde/terrafrom-google-static-website"</span>
+  <span class="fragment highlight-current-green">source = "github.com/dfedde/terraform-google-static-website"</span>
   <span class="fragment highlight-current-green"><span class="fragment highlight-current-green">name = "game"</span>
   <span class="fragment highlight-current-green">bucket = "${google_storage_bucket.asset_store.name}"</span></span>
 }
@@ -1197,7 +1191,7 @@ output "load_balancer_address" {
   <script type="text/template">
     <pre>
 resource "google_storage_bucket" "terraform_state" {
-  name="${var.project_name}-terrafrom"
+  name="${var.project_name}-terraform"
   storage_class = "MULTI_REGIONAL"
   force_destroy = "true"
 }
@@ -1247,6 +1241,33 @@ rm -rf terraform.tfstate*
    <span class="fragment highlight-current-green"> prefix  = "terraform/state"</span>
   }
 }
+</pre>
+
+  </script>
+</section> 
+
+</section> 
+<section>
+  <section data-markdown>
+  <script type="text/template">
+    <pre>
+├── account.json
+├── main.tf
+├── plan.tfplan
+└── .terraform
+&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="1">modules</div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="1">a199e18e5e15b5ffd93bfdd266fc2c9e</div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="1"><span class="fragment highlight-current-green" data-fragment-index="2">.git</div></div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="1"><span class="fragment highlight-current-green" data-fragment-index="3">main.tf</div></div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="1"><span class="fragment highlight-current-green" data-fragment-index="3">outputs.tf</div></div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="fragment highlight-current-green" data-fragment-index="1">README.md</div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="fragment highlight-current-green" data-fragment-index="1"><span class="fragment highlight-current-green" data-fragment-index="3">variables.tf</div></div>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="fragment highlight-current-green" data-fragment-index="1">modules.json</div>
+&nbsp;&nbsp;&nbsp;&nbsp;├── plugins
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── linux_amd64
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── lock.json
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── terraform-provider-google_v1.5.0_x4
+&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="fragment highlight-current-green" data-fragment-index="4">terraform.tfstate</div>
 </pre>
 
   </script>
@@ -1394,7 +1415,7 @@ terraform state rm google_storage_bucket.terraform_state
 <section data-markdown>
   <script type="text/template">
     #### remove from your config
- - google_storage_bucket.terrafrom_state
+ - google_storage_bucket.terraform_state
 
   </script>
 </section> 

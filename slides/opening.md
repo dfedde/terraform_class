@@ -4,7 +4,7 @@
 
 %%%
 
-## what are we going to be doing today???
+#### what are we going to be doing today???
 
 - Using GCP <!-- .element: class="fragment" -->
 - Using Terraform <!-- .element: class="fragment" -->
