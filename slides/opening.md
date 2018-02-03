@@ -5,9 +5,9 @@
 
 %%%
 ## we are
-###<span class='fragment'>Glenn</span>
-####<span class='fragment'>and</span>
-###<span class='fragment'>Duncan</span>
+<h2><span class='fragment'>Glenn</span></h2>
+<h3><span class='fragment'>and</span></h3>
+<h2><span class='fragment'>Duncan</span></h2>
 %%%
 
 #### what are we going to be doing today???

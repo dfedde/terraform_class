@@ -183,8 +183,8 @@ use Rack::Session::Cookie, :key => 'done.user',
 	:secret => (random_string 50)
 
 # FileUtils.touch(".data/test.db")
-# db = SQLite3::Database.new ".data/test.db"
-db = SQLite3::Database.new ":memory:"
+db = SQLite3::Database.new ".data/test.db"
+# db = SQLite3::Database.new ":memory:"
 puts db.get_first_value 'SELECT SQLITE_VERSION()'
 
 db.execute "CREATE TABLE IF NOT EXISTS students (id INTEGER PRIMARY KEY AUTOINCREMENT, 		email TEXT)"
