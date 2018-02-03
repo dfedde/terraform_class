@@ -33,7 +33,7 @@ font-size: 32px;
 }
   </style>
 
-<form action="http://192.168.50.237:4567/student" method="post" target="_blank">
+<form action="http://$IP$:4567/student" method="post" target="_blank">
 <div class="bounding-box">
  <div>
   <label>Email:</label> <input class="text-box" type="email" name="email"><br><small>(must be linked to a valid google account)</small><br>
