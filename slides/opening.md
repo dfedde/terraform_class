@@ -3,6 +3,11 @@
 #### [duncan.fedde.us/terraform_class](http://duncan.fedde.us/terraform_class)
 
 %%%
+## we are
+###<span class='fragment'>Glenn</span>
+####<span class='fragment'>and</span>
+###<span class='fragment'>Duncan</span>
+%%%
 
 #### what are we going to be doing today???
 
